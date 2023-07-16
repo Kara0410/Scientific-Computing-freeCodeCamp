@@ -15,11 +15,14 @@ class Category:
             self.category = category
 
     def deposit(self, amount: float, description: str = ""):
+        # adds amount to balance
         self.balance += amount
         return self.ledger.append({"amount": amount, "description": description})
 
     def withdraw(self, amount: float, description: str = ""):
+
         if self.check_funds(amount=amount) is True:
+            # removes specific amount from balance
             self.balance -= amount
             self.balance = round(self.balance, 2)
             self.ledger.append({"amount": -amount, "description": description})
@@ -28,6 +31,7 @@ class Category:
             return False
 
     def get_balance(self):
+        # give you the total balance of the category
         return self.balance
 
     def transfer(self, amount: float, rec_category: object):
@@ -41,11 +45,13 @@ class Category:
             return False
 
     def check_funds(self, amount):
+        # checks if the amount is higher than the total balance of the category
         if amount > self.balance:
             return False
         else:
             return True
 
+    # __str__ is how the print() should be used for the class
     def __str__(self) -> str:
 
         # Adding the title to the print line
