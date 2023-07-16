@@ -79,7 +79,7 @@ def create_spend_chart(categories: object):
     for category in categories:
         spending = 0
         for each_transfer in category.ledger:
-            # check if the amount of tranfser was an withdraw
+            # check if the amount of transfer was an withdraw
             if each_transfer['amount'] < 0:
                 spending -= each_transfer['amount']
         category_spending[category.category] = round(spending, 2)
